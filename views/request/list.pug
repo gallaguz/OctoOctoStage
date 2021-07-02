@@ -1,0 +1,6 @@
+extends ../layout
+
+block content
+    ul
+        each request in requests
+            li(value="request.id")=request.description
