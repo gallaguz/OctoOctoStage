@@ -1,6 +1,14 @@
 extends ../layout
 
 block content
+    p
+        select(name="groups" id="groups")
+            each group in groups
+                option(value="group.id")=group.name
+    p
+        select(name="projects" id="projects")
+            each project in projects
+                option(value="project.id")=project.name
     ul
         each request in requests
             li(value="request.id")=request.description

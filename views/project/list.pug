@@ -1,0 +1,6 @@
+extends ../layout
+
+block content
+    ul
+        each project in projects
+            li(value="project.id")=project.name

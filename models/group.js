@@ -16,11 +16,22 @@
 
 'use strict';
 
+const Project = require("./project.js");
 const {Model} = require('objection');
 
 class Group extends Model {
     static tableName = 'groups';
 
+    static relationMappings = {
+        project: {
+            relation: Model.HasManyRelation,
+            modelClass: Project,
+            join: {
+                from: 'group.id',
+                to: 'projects.group_id'
+            }
+        }
+    }
 }
 
 module.exports = Group;

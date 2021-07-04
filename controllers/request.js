@@ -20,7 +20,12 @@ const models = require('../models');
 
 exports.list = async (request,response) => {
     const allRequests = await models.request.query();
+    const allGroups = await models.group.query();
+    const allProjects = await models.project.query();
+
     response.render('request/list', {
+        groups: allGroups,
+        projects: allProjects,
         requests: allRequests
     });
 }

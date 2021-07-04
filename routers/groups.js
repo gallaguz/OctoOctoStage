@@ -18,12 +18,8 @@
 
 const express = require('express');
 const router = express.Router();
-const requestController = require('./requests.js');
-const groupController = require('./groups.js');
-const projectController = require('./projects.js');
+const groupController = require('../controllers/group.js');
 
-router.use('/requests', requestController);
-router.use('/groups', groupController);
-router.use('/projects', projectController);
+router.get('/', groupController.list);
 
 module.exports = router;

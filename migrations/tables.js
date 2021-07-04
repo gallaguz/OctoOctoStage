@@ -49,6 +49,9 @@ exports.up = function(knex) {
             table.foreign('project_id').references('id').inTable('projects');
             table.foreign('group_id').references('id').inTable('groups');
         })
+        .alterTable('projects', function (table) {
+            table.foreign('group_id').references('id').inTable('groups');
+        })
 };
 
 exports.down = function(knex) {
