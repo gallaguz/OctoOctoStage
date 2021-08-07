@@ -1,6 +1,8 @@
 extends ../layout
 
 block content
-    ul
-        each group in groups
-            li(value="group.id")=group.name
+    p
+        label(for="groups") Groups list
+        ul(id="groups")
+            each group in groups
+                li(value="group.id")=group.name

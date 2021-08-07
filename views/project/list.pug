@@ -1,6 +1,8 @@
 extends ../layout
 
 block content
-    ul
-        each project in projects
-            li(value="project.id")=project.name
+    p
+        label(for="projects") Projects list
+        ul(id="projects")
+            each project in projects
+                li(value="project.id")=project.name
