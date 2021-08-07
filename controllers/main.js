@@ -16,11 +16,14 @@
 
 'use strict';
 
-const express = require('express');
-const router = express.Router();
-const groupController = require('../controllers/group.js');
+const models = require('../models');
 
-router.get('/', groupController.list);
-router.get('/:id', groupController.item)
+exports.index = async (request, response) => {
+    const getAllGroupsWithProjects = await models.group.query().withGraphJoined('project');
+    const getAllRequests = await models.request.query();
 
-module.exports = router;
+    response.render('index', {
+        groupsWithProjects: getAllGroupsWithProjects,
+        requests: getAllRequests
+    });
+}

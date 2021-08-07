@@ -27,7 +27,7 @@ class Group extends Model {
             relation: Model.HasManyRelation,
             modelClass: Project,
             join: {
-                from: 'group.id',
+                from: 'groups.id',
                 to: 'projects.group_id'
             }
         }

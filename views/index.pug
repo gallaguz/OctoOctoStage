@@ -1,0 +1,8 @@
+extends layout
+
+block content
+    p
+        label(for="requests") Requests list
+        ul(id="requests")
+            each request in requests
+                li(value="request.id")=request.description

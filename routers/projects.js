@@ -21,5 +21,6 @@ const router = express.Router();
 const projectController = require('../controllers/project.js');
 
 router.get('/', projectController.list);
+router.get('/:id', projectController.item)
 
 module.exports = router;

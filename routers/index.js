@@ -21,9 +21,11 @@ const router = express.Router();
 const requestController = require('./requests.js');
 const groupController = require('./groups.js');
 const projectController = require('./projects.js');
+const mainController = require("../controllers/main.js");
 
 router.use('/requests', requestController);
 router.use('/groups', groupController);
 router.use('/projects', projectController);
+router.get('/', mainController.index);
 
 module.exports = router;

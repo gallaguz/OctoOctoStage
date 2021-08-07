@@ -18,12 +18,14 @@
 
 const models = require('../models');
 
-exports.list = async (request,response) => {
+exports.list = async (request, response) => {
+    const getAllGroupsWithProjects = await models.group.query().withGraphJoined('project');
     const allRequests = await models.request.query();
     const allGroups = await models.group.query();
     const allProjects = await models.project.query();
 
     response.render('request/list', {
+        groupsWithProjects: getAllGroupsWithProjects,
         groups: allGroups,
         projects: allProjects,
         requests: allRequests
@@ -31,9 +33,12 @@ exports.list = async (request,response) => {
 }
 
 exports.new = async (request, response) => {
+    const getAllGroupsWithProjects = await models.group.query().withGraphJoined('project');
     const allGroups = await models.group.query();
     const allProjects = await models.project.query();
+
     response.render('request/new', {
+        groupsWithProjects: getAllGroupsWithProjects,
         groups: allGroups,
         projects: allProjects
     });
