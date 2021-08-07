@@ -2,13 +2,17 @@ extends ../layout
 
 block content
     p
+        label(for="groups") Groups
         select(name="groups" id="groups")
             each group in groups
                 option(value="group.id")=group.name
     p
+        label(for="projects") Projects
         select(name="projects" id="projects")
             each project in projects
                 option(value="project.id")=project.name
-    ul
-        each request in requests
-            li(value="request.id")=request.description
+    p
+        label(for="requests") Requests list
+        ul(id="requests")
+            each request in requests
+                li(value="request.id")=request.description

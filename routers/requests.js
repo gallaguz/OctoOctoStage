@@ -21,5 +21,6 @@ const router = express.Router();
 const requestController = require('../controllers/request.js');
 
 router.get('/', requestController.list);
+router.get('/new', requestController.new);
 
 module.exports = router;

@@ -1,0 +1,29 @@
+extends ../layout
+
+block content
+    div
+        h2 New request
+        form(action="/requests/new" method="POST")
+            p
+                label(for="group_id") Group
+                select(name="group_id" id="group_id")
+                    each group in groups
+                        option(value="group.id")=group.name
+            p
+                label(for="projects") Project
+                select(name="projects" id="projects")
+                    option(value=0) No project
+                    each project in projects
+                        option(value="project.id")=project.name
+            p
+                label(for="user") User
+                input(type="text" id="user" value="" name="user_id")
+            p
+                label(for="subject") Subject
+                input(type="text" id="subject" value="subject" name="subject")
+            p
+                label(for="description") Description
+                textarea(name="description" id="description" cols="30" rows="10") Description
+            p
+                input(type="submit" value="Back")
+                input(type="submit" value="Create")

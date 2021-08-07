@@ -29,3 +29,12 @@ exports.list = async (request,response) => {
         requests: allRequests
     });
 }
+
+exports.new = async (request, response) => {
+    const allGroups = await models.group.query();
+    const allProjects = await models.project.query();
+    response.render('request/new', {
+        groups: allGroups,
+        projects: allProjects
+    });
+};
