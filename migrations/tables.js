@@ -43,6 +43,7 @@ exports.up = function(knex) {
             table.bigInteger('project_id').unsigned().nullable();
             table.bigInteger('group_id').unsigned();
             table.bigInteger('priority_id').unsigned().nullable();
+            table.bigInteger('status_id').unsigned().nullable();
             table.timestamps();
         })
         .createTable('replies', function (table) {
@@ -56,6 +57,10 @@ exports.up = function(knex) {
             table.bigIncrements('id').primary();
             table.string('name');
         })
+        .createTable('statuses', function (table) {
+            table.bigIncrements('id').primary();
+            table.string('name');
+        })
         .alterTable('replies', function(table) {
             table.foreign('user_id').references('id').inTable('users');
             table.foreign('request_id').references('id').inTable('requests');
@@ -65,6 +70,7 @@ exports.up = function(knex) {
             table.foreign('project_id').references('id').inTable('projects');
             table.foreign('group_id').references('id').inTable('groups');
             table.foreign('priority_id').references('id').inTable('priorities');
+            table.foreign('status_id').references('id').inTable('statuses');
         })
         .alterTable('projects', function (table) {
             table.foreign('group_id').references('id').inTable('groups');
@@ -78,5 +84,6 @@ exports.down = function(knex) {
         .dropTable('projects')
         .dropTable('requests')
         .dropTable('replies')
-        .dropTable('priorities');
+        .dropTable('priorities')
+        .dropTable('statuses');
 };

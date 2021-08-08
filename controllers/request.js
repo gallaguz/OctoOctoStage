@@ -37,12 +37,14 @@ exports.new = async (request, response) => {
     const allGroups = await models.group.query();
     const allProjects = await models.project.query();
     const allPriorities = await  models.priority.query();
+    const allStatuses = await  models.status.query();
 
     response.render('request/new', {
         groupsWithProjects: getAllGroupsWithProjects,
         groups: allGroups,
         projects: allProjects,
-        priorities: allPriorities
+        priorities: allPriorities,
+        statuses: allStatuses
     });
 };
 

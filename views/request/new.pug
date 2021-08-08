@@ -21,6 +21,11 @@ block content
                     each priority in priorities
                         option(value="priority.id")=priority.name
             p
+                label(for="status") Status
+                select(name="status_id" id="status")
+                    each status in statuses
+                        option(value="status.id")=status.name
+            p
                 label(for="user") User
                 input(type="text" id="user" value="" name="user_id")
             p
