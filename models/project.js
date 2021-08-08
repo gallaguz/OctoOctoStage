@@ -19,7 +19,7 @@
 const Group = require("./group.js");
 const {Model} = require('objection');
 
-class Project extends Model {
+module.exports = class Project extends Model {
     static tableName = 'projects';
 
     static relationMappings = {
@@ -33,5 +33,3 @@ class Project extends Model {
         }
     }
 }
-
-module.exports = Project;

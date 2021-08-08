@@ -18,7 +18,7 @@
 
 const { Model } = require('objection');
 
-class Reply extends Model {
+module.exports = class Reply extends Model {
     static tableName = 'replies';
 
     static async getById(id) {
@@ -30,5 +30,3 @@ class Reply extends Model {
             .where('request_id', '=', id);
     }
 }
-
-module.exports = Reply;

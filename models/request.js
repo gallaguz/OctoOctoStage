@@ -18,9 +18,6 @@
 
 const {Model} = require('objection');
 
-class Request extends Model {
+module.exports = class Request extends Model {
     static tableName = 'requests';
-
 }
-
-module.exports = Request;
