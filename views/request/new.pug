@@ -16,6 +16,11 @@ block content
                     each project in projects
                         option(value="project.id")=project.name
             p
+                label(for="priority") Priority
+                select(name="priority_id" id="priority")
+                    each priority in priorities
+                        option(value="priority.id")=priority.name
+            p
                 label(for="user") User
                 input(type="text" id="user" value="" name="user_id")
             p

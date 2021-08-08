@@ -16,18 +16,8 @@
 
 'use strict';
 
-const group = require('./group.js');
-const project = require('./project.js');
-const user = require('./user.js');
-const request = require('./request.js');
-const reply = require("./reply.js");
-const priority = require('./priority.js');
+const { Model } = require('objection');
 
-module.exports = {
-    group,
-    project,
-    request,
-    user,
-    reply,
-    priority,
+module.exports = class Priority extends Model {
+    static tableName = 'priorities';
 }
