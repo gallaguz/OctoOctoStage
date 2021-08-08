@@ -44,6 +44,17 @@ exports.up = function(knex) {
             table.bigInteger('group_id').unsigned();
             table.timestamps();
         })
+        .createTable('replies', function (table) {
+            table.bigIncrements('id').primary();
+            table.text('content');
+            table.bigInteger('request_id').unsigned();
+            table.bigInteger('user_id').unsigned();
+            table.timestamps();
+        })
+        .alterTable('replies', function(table) {
+            table.foreign('user_id').references('id').inTable('users');
+            table.foreign('request_id').references('id').inTable('requests');
+        })
         .alterTable('requests', function (table) {
             table.foreign('user_id').references('id').inTable('users');
             table.foreign('project_id').references('id').inTable('projects');
@@ -59,5 +70,6 @@ exports.down = function(knex) {
         .dropTable('users')
         .dropTable('groups')
         .dropTable('projects')
-        .dropTable('requests');
+        .dropTable('requests')
+        .dropTable('replies');
 };

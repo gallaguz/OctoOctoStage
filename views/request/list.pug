@@ -15,4 +15,5 @@ block content
         label(for="requests") Requests list
         ul(id="requests")
             each request in requests
-                li(value="request.id")=request.description
+                li(value="request.id")=request.subject
+                    a(href="/requests/" + request.id)=request.description

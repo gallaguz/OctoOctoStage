@@ -29,8 +29,9 @@ exports.list = async (request, response) => {
 }
 
 exports.item = async (request, response) => {
+    const getId = request.params.id;
     const getAllGroupsWithProjects = await models.group.query().withGraphJoined('project');
-    const projectId = await models.project.query().findById(request.params.id);
+    const projectId = await models.project.query().findById(getId);
 
     response.render('project/item', {
         groupsWithProjects: getAllGroupsWithProjects,

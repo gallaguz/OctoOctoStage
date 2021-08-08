@@ -43,3 +43,16 @@ exports.new = async (request, response) => {
         projects: allProjects
     });
 };
+
+exports.item = async (request, response) => {
+    const getId = request.params.id;
+    const getAllGroupsWithProjects = await models.group.query().withGraphJoined('project');
+    const requestId = await models.request.query().findById(getId);
+    const getRepliesById = await models.reply.getById(getId);
+
+    response.render('request/item', {
+        groupsWithProjects: getAllGroupsWithProjects,
+        requestId: requestId,
+        replies: getRepliesById
+    });
+}

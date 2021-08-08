@@ -22,5 +22,6 @@ const requestController = require('../controllers/request.js');
 
 router.get('/', requestController.list);
 router.get('/new', requestController.new);
+router.get('/:id', requestController.item);
 
 module.exports = router;

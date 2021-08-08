@@ -16,25 +16,19 @@
 
 'use strict';
 
-const models = require('../models');
+const { Model } = require('objection');
 
-exports.list = async (request, response) => {
-    const getAllGroupsWithProjects = await models.group.query().withGraphJoined('project');
-    const allGroups = await models.group.query();
+class Reply extends Model {
+    static tableName = 'replies';
 
-    response.render('group/list', {
-        groupsWithProjects: getAllGroupsWithProjects,
-        groups: allGroups
-    });
+    static async getById(id) {
+        return Reply.query()
+            .select('users.name as user', 'replies.id', 'replies.content', 'replies.created_at')
+            .leftJoin('users', (q) => {
+                q.on('users.id', 'user_id');
+            })
+            .where('request_id', '=', id);
+    }
 }
 
-exports.item = async (request, response) => {
-    const getId = request.params.id;
-    const getAllGroupsWithProjects = await models.group.query().withGraphJoined('project');
-    const groupId = await models.group.query().findById(getId);
-
-    response.render('group/item', {
-        groupsWithProjects: getAllGroupsWithProjects,
-        groupId: groupId
-    })
-}
+module.exports = Reply;
