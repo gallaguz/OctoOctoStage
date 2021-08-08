@@ -20,7 +20,7 @@ const group = require('./group.js');
 const project = require('./project.js');
 const user = require('./user.js');
 const request = require('./request.js');
-const reply = require("./reply.js");
+const reply = require('./reply.js');
 const priority = require('./priority.js');
 
 module.exports = {

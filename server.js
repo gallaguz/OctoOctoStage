@@ -19,7 +19,7 @@
 const path = require('path');
 const express = require('express');
 const router = require('./routers');
-const {initDb} = require("./models/db");
+const {initDb} = require('./models/db.js');
 
 const app = express();
 
