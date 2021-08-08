@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.left-frame {
+    width: 15em;
+    background-color: cadetblue;
+}
+
+.right-frame {
+    background-color: white;
+}
