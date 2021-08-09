@@ -61,6 +61,10 @@ exports.up = function(knex) {
             table.bigIncrements('id').primary();
             table.string('name');
         })
+        .createTable('tags', function (table) {
+            table.bigIncrements('id').primary();
+            table.string('name');
+        })
         .alterTable('replies', function(table) {
             table.foreign('user_id').references('id').inTable('users');
             table.foreign('request_id').references('id').inTable('requests');
