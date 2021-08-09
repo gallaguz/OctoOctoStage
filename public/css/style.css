@@ -11,3 +11,13 @@
 .right-frame {
     background-color: white;
 }
+
+.main_request {
+    display: flex;
+    width: 900px;
+    justify-content: space-around;
+}
+
+.main_request:nth-child(2n) {
+    background-color: #eee;
+}

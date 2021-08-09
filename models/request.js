@@ -20,4 +20,19 @@ const {Model} = require('objection');
 
 module.exports = class Request extends Model {
     static tableName = 'requests';
+
+    static async getAllRequestsForDashboard() {
+        return Request
+            .query()
+            .select('users.name as user', 'requests.id', 'priorities.name as priority', 'statuses.name as status', 'requests.subject', 'requests.description')
+            .leftJoin('statuses', (q) => {
+                q.on('statuses.id', 'status_id');
+            })
+            .leftJoin('priorities', (q) => {
+                q.on('priorities.id', 'priority_id');
+            })
+            .leftJoin('users', (q) => {
+                q.on('users.id', 'user_id');
+            })
+    }
 }

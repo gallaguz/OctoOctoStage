@@ -3,6 +3,12 @@ extends layout
 block content
     p
         label(for="requests") Requests list
-        ul(id="requests")
+        div(id="requests")
             each request in requests
-                li(value="request.id")=request.description
+                div
+                    a(href='/requests/' + request.id class="main_request")
+                        div=request.subject
+                        div=request.description
+                        div=request.user
+                        div=request.priority
+                        div=request.status

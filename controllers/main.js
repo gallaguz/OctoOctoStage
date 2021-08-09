@@ -20,7 +20,7 @@ const models = require('../models');
 
 exports.index = async (request, response) => {
     const getAllGroupsWithProjects = await models.group.query().withGraphJoined('project');
-    const getAllRequests = await models.request.query();
+    const getAllRequests = await models.request.getAllRequestsForDashboard()
 
     response.render('index', {
         groupsWithProjects: getAllGroupsWithProjects,
