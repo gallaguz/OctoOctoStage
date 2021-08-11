@@ -22,7 +22,8 @@ const user = require('./user.js');
 const request = require('./request.js');
 const reply = require('./reply.js');
 const priority = require('./priority.js');
-const status = require('./status.js')
+const status = require('./status.js');
+const tag = require('./tag.js');
 
 module.exports = {
     group,
@@ -32,4 +33,5 @@ module.exports = {
     reply,
     priority,
     status,
+    tag,
 }
