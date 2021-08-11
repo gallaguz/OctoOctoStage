@@ -38,3 +38,18 @@ exports.item = async (request, response) => {
         projectId: projectId
     })
 }
+
+exports.add = async (request, response) => {
+    const allGroups = await models.group.query();
+    const getAllGroupsWithProjects = await models.group.query().withGraphJoined('project');
+    response.render('project/add', {
+        groupsWithProjects: getAllGroupsWithProjects,
+        groups: allGroups
+    })
+}
+
+exports.save = async (request, response) => {
+    const body = request.body;
+    await models.project.query().insert(body);
+    response.sendStatus(200);
+}

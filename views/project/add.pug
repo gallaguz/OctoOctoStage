@@ -1,0 +1,15 @@
+extends ../layout
+
+block content
+    div
+        h1 Add project
+        p
+            form(action="/projects/add" method="POST")
+                label(for="new_project") New project
+                input(type="text" id="new_project" value="" name="name")
+                p
+                    label(for="group_id") Group
+                    select(name="group_id" id="group_id")
+                        each group in groups
+                            option(value=group.id)=group.name
+                input(type="submit" value="Add project" )

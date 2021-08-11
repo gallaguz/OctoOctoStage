@@ -20,6 +20,8 @@ const express = require('express');
 const router = express.Router();
 const projectController = require('../controllers/project.js');
 
+router.get('/add', projectController.add);
+router.post('/add', projectController.save);
 router.get('/', projectController.list);
 router.get('/:id', projectController.item)
 

@@ -20,7 +20,9 @@ const express = require('express');
 const router = express.Router();
 const groupController = require('../controllers/group.js');
 
+router.get('/add', groupController.add);
+router.post('/add', groupController.save);
 router.get('/', groupController.list);
-router.get('/:id', groupController.item)
+router.get('/:id', groupController.item);
 
 module.exports = router;
