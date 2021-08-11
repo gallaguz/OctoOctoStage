@@ -21,7 +21,7 @@ const router = express.Router();
 const requestController = require('../controllers/request.js');
 
 router.get('/', requestController.list);
-router.get('/new', requestController.new);
+router.get('/add', requestController.add);
 router.get('/:id', requestController.item);
 
 module.exports = router;

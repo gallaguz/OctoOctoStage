@@ -32,14 +32,14 @@ exports.list = async (request, response) => {
     });
 }
 
-exports.new = async (request, response) => {
+exports.add = async (request, response) => {
     const getAllGroupsWithProjects = await models.group.query().withGraphJoined('project');
     const allGroups = await models.group.query();
     const allProjects = await models.project.query();
     const allPriorities = await  models.priority.query();
     const allStatuses = await  models.status.query();
 
-    response.render('request/new', {
+    response.render('request/add', {
         groupsWithProjects: getAllGroupsWithProjects,
         groups: allGroups,
         projects: allProjects,

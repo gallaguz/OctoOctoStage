@@ -8,23 +8,23 @@ block content
                 label(for="group_id") Group
                 select(name="group_id" id="group_id")
                     each group in groups
-                        option(value="group.id")=group.name
+                        option(value=group.id)=group.name
             p
                 label(for="projects") Project
                 select(name="projects" id="projects")
                     option(value=0) No project
                     each project in projects
-                        option(value="project.id")=project.name
+                        option(value=project.id)=project.name
             p
                 label(for="priority") Priority
                 select(name="priority_id" id="priority")
                     each priority in priorities
-                        option(value="priority.id")=priority.name
+                        option(value=priority.id)=priority.name
             p
                 label(for="status") Status
                 select(name="status_id" id="status")
                     each status in statuses
-                        option(value="status.id")=status.name
+                        option(value=status.id)=status.name
             p
                 label(for="user") User
                 input(type="text" id="user" value="" name="user_id")
