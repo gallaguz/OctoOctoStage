@@ -16,18 +16,14 @@
 
 'use strict';
 
-const express = require('express');
-const router = express.Router();
-const requestController = require('./requests.js');
-const groupController = require('./groups.js');
-const projectController = require('./projects.js');
-const tagsController = require('./tags.js');
-const mainController = require("../controllers/main.js");
+const models = require('../models');
 
-router.use('/requests', requestController);
-router.use('/groups', groupController);
-router.use('/projects', projectController);
-router.use('/tags', tagsController);
-router.get('/', mainController.index);
+exports.list = async (request, response) => {
+    const getAllGroupsWithProjects = await models.group.query().withGraphJoined('project');
+    const allTags = await models.tag.query();
 
-module.exports = router;
+    response.render('tag/list', {
+        groupsWithProjects: getAllGroupsWithProjects,
+        tags: allTags,
+    });
+}

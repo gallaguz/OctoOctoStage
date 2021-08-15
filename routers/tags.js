@@ -18,16 +18,8 @@
 
 const express = require('express');
 const router = express.Router();
-const requestController = require('./requests.js');
-const groupController = require('./groups.js');
-const projectController = require('./projects.js');
-const tagsController = require('./tags.js');
-const mainController = require("../controllers/main.js");
+const tagsController = require('../controllers/tags.js');
 
-router.use('/requests', requestController);
-router.use('/groups', groupController);
-router.use('/projects', projectController);
-router.use('/tags', tagsController);
-router.get('/', mainController.index);
+router.get('/', tagsController.list);
 
 module.exports = router;

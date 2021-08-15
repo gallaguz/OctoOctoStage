@@ -1,0 +1,6 @@
+extends ../layout
+
+block content
+    ul(id="tags")
+        each tag in tags
+            li(id=tag.id)=tag.name
