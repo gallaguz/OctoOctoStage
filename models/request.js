@@ -17,22 +17,66 @@
 'use strict';
 
 const {Model} = require('objection');
+const Group = require("./group.js");
+const Project = require("./project.js");
+const Status = require("./status.js");
+const Priority = require("./priority.js");
+const User = require("./user.js");
 
 module.exports = class Request extends Model {
     static tableName = 'requests';
 
+    static relationMappings = {
+        group: {
+            relation: Model.BelongsToOneRelation,
+            modelClass: Group,
+            join: {
+                from: 'requests.group_id',
+                to: 'groups.id'
+            }
+        },
+        project: {
+            relation: Model.BelongsToOneRelation,
+            modelClass: Project,
+            join: {
+                from: 'requests.project_id',
+                to: 'projects.id'
+            }
+        },
+        status: {
+            relation: Model.BelongsToOneRelation,
+            modelClass: Status,
+            join: {
+                from: 'requests.status_id',
+                to: 'statuses.id'
+            }
+        },
+        priority: {
+            relation: Model.BelongsToOneRelation,
+            modelClass: Priority,
+            join: {
+                from: 'requests.priority_id',
+                to: 'priorities.id'
+            }
+        },
+        user: {
+            relation: Model.BelongsToOneRelation,
+            modelClass: User,
+            join: {
+                from: 'requests.user_id',
+                to: 'users.id'
+            }
+        }
+    }
     static async getAllRequestsForDashboard() {
         return Request
-            .query()
-            .select('users.name as user', 'requests.id', 'priorities.name as priority', 'statuses.name as status', 'requests.subject', 'requests.description')
-            .leftJoin('statuses', (q) => {
-                q.on('statuses.id', 'status_id');
-            })
-            .leftJoin('priorities', (q) => {
-                q.on('priorities.id', 'priority_id');
-            })
-            .leftJoin('users', (q) => {
-                q.on('users.id', 'user_id');
-            })
+            .query().withGraphJoined('status').withGraphJoined('priority').withGraphJoined('user')
+
+    }
+
+    static async getAllRequestsForProject(id) {
+        return Request
+            .query().withGraphJoined('group').withGraphJoined('project').where('project_id', id)
+
     }
 }

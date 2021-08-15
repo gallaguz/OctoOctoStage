@@ -9,6 +9,6 @@ block content
                     a(href='/requests/' + request.id class="main_request")
                         div=request.subject
                         div=request.description
-                        div=request.user
-                        div=request.priority
-                        div=request.status
+                        div=request.user.name
+                        div=request.priority.name
+                        div=request.status.name

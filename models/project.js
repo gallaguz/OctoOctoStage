@@ -28,7 +28,7 @@ module.exports = class Project extends Model {
             modelClass: Group,
             join: {
                 from: 'projects.group_id',
-                to: 'group.id'
+                to: 'groups.id'
             }
         }
     }
