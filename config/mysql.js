@@ -19,7 +19,7 @@
 module.exports = {
     client: 'mysql2',
     connection: {
-        host: process.env.DB_HOST,
+        host: process.env.OCTO_DB_HOST,
         user: process.env.OCTO_DB_USER,
         password: process.env.OCTO_DB_PASSWORD,
         database: process.env.OCTO_DB_NAME
