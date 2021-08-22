@@ -2,6 +2,10 @@ extends ../layout
 
 block content
     p
+        h3="Project" + " " + projectId.name
+
+    p
+        h3 Requests
         ul
-            li=projectId.id
-            li=projectId.name
+            each request in requests
+                li=request.subject + " " + request.description + " " + request.group.name + " " + request.project.name

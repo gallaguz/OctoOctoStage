@@ -32,10 +32,12 @@ exports.item = async (request, response) => {
     const getId = request.params.id;
     const getAllGroupsWithProjects = await models.group.query().withGraphJoined('project');
     const projectId = await models.project.query().findById(getId);
+    const allRequestInProject = await models.request.getAllRequestsForProject(getId);
 
     response.render('project/item', {
         groupsWithProjects: getAllGroupsWithProjects,
-        projectId: projectId
+        projectId: projectId,
+        requests: allRequestInProject
     })
 }
 

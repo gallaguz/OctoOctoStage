@@ -2,11 +2,13 @@ extends ../layout
 
 block content
     p
+        h3=groupId.name
         ul
-            li=groupId.id
-            li=groupId.name
+            each project in projectsByGroup.project
+                li
+                    a(href="/projects/" + project.id)=project.name
         div
-            h1 Add project
+            h3 Add project
             p
                 form(action="/projects/add" method="POST")
                     label(for="new_project") New project
