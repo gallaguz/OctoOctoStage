@@ -27,3 +27,11 @@ exports.index = async (request, response) => {
         requests: getAllRequests
     });
 }
+
+exports.loginPage = (request, response) => {
+    response.render('login');
+}
+
+exports.registerPage = (request, response) => {
+    response.render('register');
+}

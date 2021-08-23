@@ -5,15 +5,17 @@ html(lang="en")
       link(rel='stylesheet' href='../css/style.css')
    body
       div(class='container')
-         div(class='left-frame')
-            a(href='/') OctoOctoRequest
-            ul
-               each group in groupsWithProjects
-                  li
-                     a(href='/groups/' + group.id)=group.name
-                     ul
-                        each project in group.project
-                           li
-                              a(href='/projects/' + project.id)=project.name
-         div(class='right-frame')
+         if groupsWithProjects
+            div(class='left-frame')
+               a(href='/') OctoOctoRequest
+               ul
+                  each group in groupsWithProjects
+                     li
+                        a(href='/groups/' + group.id)=group.name
+                        ul
+                           each project in group.project
+                              li
+                                 a(href='/projects/' + project.id)=project.name
+            div(class='right-frame')
+         else
             block content

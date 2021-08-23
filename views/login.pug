@@ -1,0 +1,13 @@
+extends layout
+
+block content
+    p
+        form(method="POST" action="/login")
+            p
+                label(for="username") Username
+                input(type="text" id="username" value="" placeholder="Username")
+            p
+                label(for="password") Password
+                input(type="password" id="password" value="" placeholder="Password")
+            p
+                input(type="submit" value="Register")

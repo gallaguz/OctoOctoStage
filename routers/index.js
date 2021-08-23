@@ -28,6 +28,8 @@ router.use('/requests', requestController);
 router.use('/groups', groupController);
 router.use('/projects', projectController);
 router.use('/tags', tagsController);
+router.get('/login', mainController.loginPage);
+router.get('/register', mainController.registerPage);
 router.get('/', mainController.index);
 
 module.exports = router;

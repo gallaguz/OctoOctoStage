@@ -1,0 +1,19 @@
+extends layout
+
+block content
+    p
+        form(method="POST" action="/register")
+            p
+                label(for="email") E-mail
+                input(type="text" id="email" value="" placeholder="E-mail")
+            p
+                label(for="username") Username
+                input(type="text" id="username" value="" placeholder="username")
+            p
+                label(for="password") Password
+                input(type="password" id="password" value="" placeholder="Password")
+            p
+                label(for="password") Password second
+                input(type="password" id="password2" value="" placeholder="Password")
+            p
+                input(type="submit" value="Register")
