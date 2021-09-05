@@ -1,7 +1,7 @@
 const path = require('path');
 const mysqlConnection = require('./config/mysql.js');
 
-dbconnection = {
+const dbConnection = {
     ...mysqlConnection,
     pool: {
         min: 2,
@@ -17,7 +17,7 @@ dbconnection = {
 }
 
 module.exports = {
-    development: dbconnection,
-    staging: dbconnection,
-    production: dbconnection
+    development: dbConnection,
+    staging: dbConnection,
+    production: dbConnection
 };
