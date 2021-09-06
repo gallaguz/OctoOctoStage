@@ -19,7 +19,22 @@
 const { Model } = require('objection');
 
 module.exports = class Reply extends Model {
-    static tableName = 'replies';
+    static get tableName() {
+        return 'replies';
+    }
+
+    static get jsonSchema() {
+        return {
+            type: 'object',
+            required: ['id', 'content', 'request_id', 'user_id'],
+            properties: {
+                id: { type: 'integer' },
+                content: { type: 'string' },
+                requestId: { type: 'integer' },
+                userId: { type: 'integer' }
+            }
+        }
+    }
 
     static async getById(id) {
         return Reply.query()

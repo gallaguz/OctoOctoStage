@@ -16,8 +16,21 @@
 
 'use strict';
 
-const {Model} = require('objection');
+const { Model } = require('objection');
 
 module.exports = class Status extends Model {
-    static tableName = 'statuses';
+    static get tableName() {
+        return 'statuses';
+    }
+
+    static get jsonSchema() {
+        return {
+            type: 'object',
+            required: ['id', 'name'],
+            properties: {
+                id: { type: 'integer' },
+                name: { type: 'string' }
+            }
+        }
+    }
 }

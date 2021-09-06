@@ -16,8 +16,24 @@
 
 'use strict';
 
-const {Model} = require('objection');
+const { Model } = require('objection');
 
 module.exports = class User extends Model {
-    static tableName = 'users';
+    static get tableName() {
+        return 'users';
+    }
+
+    static get jsonSchema() {
+        return {
+            type: 'object',
+            required: ['id', 'name', 'email', 'password', 'enabled'],
+            properties: {
+                id: { type: 'integer' },
+                name: { type: 'string' },
+                email: { type: 'string' },
+                password: { type: 'string' },
+                enabled: { type: 'boolean' }
+            }
+        }
+    }
 }

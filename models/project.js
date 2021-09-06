@@ -16,19 +16,35 @@
 
 'use strict';
 
-const Group = require("./group.js");
-const {Model} = require('objection');
+const Group = require('./group.js');
+const { Model } = require('objection');
 
 module.exports = class Project extends Model {
-    static tableName = 'projects';
+    static get tableName() {
+        return 'projects';
+    }
 
-    static relationMappings = {
-        group: {
-            relation: Model.BelongsToOneRelation,
-            modelClass: Group,
-            join: {
-                from: 'projects.group_id',
-                to: 'groups.id'
+    static get jsonSchema() {
+        return {
+            type: 'object',
+            required: ['id', 'name', 'group_id'],
+            properties: {
+                id: { type: 'integer' },
+                name: { type: 'string' },
+                groupId: { type: 'integer' }
+            }
+        }
+    }
+
+    static get relationMappings() {
+        return {
+            group: {
+                relation: Model.BelongsToOneRelation,
+                modelClass: Group,
+                join: {
+                    from: 'projects.group_id',
+                    to: 'groups.id',
+                }
             }
         }
     }

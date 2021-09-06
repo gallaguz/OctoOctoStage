@@ -19,5 +19,18 @@
 const { Model } = require('objection');
 
 module.exports = class Priority extends Model {
-    static tableName = 'priorities';
+    static get tableName() {
+        return 'priorities';
+    }
+
+    static get jsonSchema() {
+        return {
+            type: 'object',
+            required: ['id', 'name'],
+            properties: {
+                id: { type: 'integer' },
+                name: { type: 'string' }
+            }
+        }
+    }
 }
