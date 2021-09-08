@@ -32,8 +32,8 @@ module.exports = class User extends Model {
                 name: { type: 'string' },
                 email: { type: 'string' },
                 password: { type: 'string' },
-                enabled: { type: 'boolean' }
-            }
-        }
+                enabled: { type: 'boolean' },
+            },
+        };
     }
-}
+};
