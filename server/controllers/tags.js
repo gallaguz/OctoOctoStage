@@ -19,11 +19,13 @@
 const models = require('../models');
 
 exports.list = async (request, response) => {
-    const getAllGroupsWithProjects = await models.group.query().withGraphJoined('project');
+    const getAllGroupsWithProjects = await models.group
+        .query()
+        .withGraphJoined('project');
     const allTags = await models.tag.query();
 
     response.render('tag/list', {
         groupsWithProjects: getAllGroupsWithProjects,
         tags: allTags,
     });
-}
+};
