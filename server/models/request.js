@@ -17,11 +17,11 @@
 'use strict';
 
 const { Model } = require('objection');
-const Group = require("./group.js");
-const Project = require("./project.js");
-const Status = require("./status.js");
-const Priority = require("./priority.js");
-const User = require("./user.js");
+const Group = require('./group.js');
+const Project = require('./project.js');
+const Status = require('./status.js');
+const Priority = require('./priority.js');
+const User = require('./user.js');
 
 module.exports = class Request extends Model {
     static get tableName() {
@@ -31,7 +31,16 @@ module.exports = class Request extends Model {
     static get jsonSchema() {
         return {
             type: 'object',
-            required: ['id', 'subject', 'description', 'user_id', 'project_id', 'group_id', 'priority_id', 'status_id'],
+            required: [
+                'id',
+                'subject',
+                'description',
+                'user_id',
+                'project_id',
+                'group_id',
+                'priority_id',
+                'status_id',
+            ],
             properties: {
                 id: { type: 'integer' },
                 subject: { type: 'string' },
@@ -40,9 +49,9 @@ module.exports = class Request extends Model {
                 projectId: { type: 'integer' },
                 groupId: { type: 'integer' },
                 priorityId: { type: 'integer' },
-                statusId: { type: 'integer' }
-            }
-        }
+                statusId: { type: 'integer' },
+            },
+        };
     }
 
     static get relationMappings() {
@@ -52,51 +61,55 @@ module.exports = class Request extends Model {
                 modelClass: Group,
                 join: {
                     from: 'requests.group_id',
-                    to: 'groups.id'
-                }
+                    to: 'groups.id',
+                },
             },
             project: {
                 relation: Model.BelongsToOneRelation,
                 modelClass: Project,
                 join: {
                     from: 'requests.project_id',
-                    to: 'projects.id'
-                }
+                    to: 'projects.id',
+                },
             },
             status: {
                 relation: Model.BelongsToOneRelation,
                 modelClass: Status,
                 join: {
                     from: 'requests.status_id',
-                    to: 'statuses.id'
-                }
+                    to: 'statuses.id',
+                },
             },
             priority: {
                 relation: Model.BelongsToOneRelation,
                 modelClass: Priority,
                 join: {
                     from: 'requests.priority_id',
-                    to: 'priorities.id'
-                }
+                    to: 'priorities.id',
+                },
             },
             user: {
                 relation: Model.BelongsToOneRelation,
                 modelClass: User,
                 join: {
                     from: 'requests.user_id',
-                    to: 'users.id'
-                }
-            }
-        }
+                    to: 'users.id',
+                },
+            },
+        };
     }
 
     static async getAllRequestsForDashboard() {
-        return Request
-            .query().withGraphJoined('status').withGraphJoined('priority').withGraphJoined('user');
+        return Request.query()
+            .withGraphJoined('status')
+            .withGraphJoined('priority')
+            .withGraphJoined('user');
     }
 
     static async getAllRequestsForProject(id) {
-        return Request
-            .query().withGraphJoined('group').withGraphJoined('project').where('project_id', id);
+        return Request.query()
+            .withGraphJoined('group')
+            .withGraphJoined('project')
+            .where('project_id', id);
     }
-}
+};

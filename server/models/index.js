@@ -34,4 +34,4 @@ module.exports = {
     priority,
     status,
     tag,
-}
+};

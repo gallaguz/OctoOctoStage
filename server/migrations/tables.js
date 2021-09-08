@@ -14,7 +14,7 @@
 //     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-exports.up = function(knex) {
+exports.up = function (knex) {
     return knex.schema
         .createTable('users', function (table) {
             table.bigIncrements('id').primary();
@@ -65,7 +65,7 @@ exports.up = function(knex) {
             table.bigIncrements('id').primary();
             table.string('name');
         })
-        .alterTable('replies', function(table) {
+        .alterTable('replies', function (table) {
             table.foreign('user_id').references('id').inTable('users');
             table.foreign('request_id').references('id').inTable('requests');
         })
@@ -78,10 +78,10 @@ exports.up = function(knex) {
         })
         .alterTable('projects', function (table) {
             table.foreign('group_id').references('id').inTable('groups');
-        })
+        });
 };
 
-exports.down = function(knex) {
+exports.down = function (knex) {
     return knex.schema
         .dropTable('users')
         .dropTable('groups')

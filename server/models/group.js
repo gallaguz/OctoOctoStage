@@ -16,7 +16,7 @@
 
 'use strict';
 
-const Project = require("./project.js");
+const Project = require('./project.js');
 const { Model } = require('objection');
 
 module.exports = class Group extends Model {
@@ -30,9 +30,9 @@ module.exports = class Group extends Model {
             required: ['id', 'name'],
             properties: {
                 id: { type: 'integer' },
-                name: { type: 'string' }
-            }
-        }
+                name: { type: 'string' },
+            },
+        };
     }
 
     static get relationMappings() {
@@ -42,9 +42,9 @@ module.exports = class Group extends Model {
                 modelClass: Project,
                 join: {
                     from: 'groups.id',
-                    to: 'projects.group_id'
-                }
-            }
-        }
+                    to: 'projects.group_id',
+                },
+            },
+        };
     }
-}
+};

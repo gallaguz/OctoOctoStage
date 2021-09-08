@@ -31,17 +31,22 @@ module.exports = class Reply extends Model {
                 id: { type: 'integer' },
                 content: { type: 'string' },
                 requestId: { type: 'integer' },
-                userId: { type: 'integer' }
-            }
-        }
+                userId: { type: 'integer' },
+            },
+        };
     }
 
     static async getById(id) {
         return Reply.query()
-            .select('users.name as user', 'replies.id', 'replies.content', 'replies.created_at')
+            .select(
+                'users.name as user',
+                'replies.id',
+                'replies.content',
+                'replies.created_at'
+            )
             .leftJoin('users', (q) => {
                 q.on('users.id', 'user_id');
             })
             .where('request_id', '=', id);
     }
-}
+};

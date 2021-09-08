@@ -19,36 +19,45 @@
 const models = require('../models');
 
 exports.list = async (request, response) => {
-    const getAllGroupsWithProjects = await models.group.query().withGraphJoined('project');
+    const getAllGroupsWithProjects = await models.group
+        .query()
+        .withGraphJoined('project');
     const allGroups = await models.group.query();
 
     response.render('group/list', {
         groupsWithProjects: getAllGroupsWithProjects,
-        groups: allGroups
+        groups: allGroups,
     });
-}
+};
 
 exports.item = async (request, response) => {
     const getId = request.params.id;
-    const getAllGroupsWithProjects = await models.group.query().withGraphJoined('project');
+    const getAllGroupsWithProjects = await models.group
+        .query()
+        .withGraphJoined('project');
     const groupId = await models.group.query().findById(getId);
-    const getAllProjectsForGroup = await models.group.query().findById(getId).withGraphJoined('project');
+    const getAllProjectsForGroup = await models.group
+        .query()
+        .findById(getId)
+        .withGraphJoined('project');
     response.render('group/item', {
         groupsWithProjects: getAllGroupsWithProjects,
         groupId: groupId,
-        projectsByGroup: getAllProjectsForGroup
-    })
-}
+        projectsByGroup: getAllProjectsForGroup,
+    });
+};
 
 exports.add = async (request, response) => {
-    const getAllGroupsWithProjects = await models.group.query().withGraphJoined('project');
+    const getAllGroupsWithProjects = await models.group
+        .query()
+        .withGraphJoined('project');
     response.render('group/add', {
         groupsWithProjects: getAllGroupsWithProjects,
-    })
-}
+    });
+};
 
 exports.save = async (request, response) => {
     const body = request.body;
     await models.group.query().insert(body);
     response.sendStatus(200);
-}
+};

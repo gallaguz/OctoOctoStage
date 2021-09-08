@@ -19,19 +19,21 @@
 const models = require('../models');
 
 exports.index = async (request, response) => {
-    const getAllGroupsWithProjects = await models.group.query().withGraphJoined('project');
-    const getAllRequests = await models.request.getAllRequestsForDashboard()
+    const getAllGroupsWithProjects = await models.group
+        .query()
+        .withGraphJoined('project');
+    const getAllRequests = await models.request.getAllRequestsForDashboard();
 
     response.render('index', {
         groupsWithProjects: getAllGroupsWithProjects,
-        requests: getAllRequests
+        requests: getAllRequests,
     });
-}
+};
 
 exports.loginPage = (request, response) => {
     response.render('login');
-}
+};
 
 exports.registerPage = (request, response) => {
     response.render('register');
-}
+};
