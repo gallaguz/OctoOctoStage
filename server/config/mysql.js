@@ -22,6 +22,6 @@ module.exports = {
         host: process.env.OCTO_DB_HOST,
         user: process.env.OCTO_DB_USER,
         password: process.env.OCTO_DB_PASSWORD,
-        database: process.env.OCTO_DB_NAME
-    }
-}
+        database: process.env.OCTO_DB_NAME,
+    },
+};

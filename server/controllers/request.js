@@ -19,7 +19,9 @@
 const models = require('../models');
 
 exports.list = async (request, response) => {
-    const getAllGroupsWithProjects = await models.group.query().withGraphJoined('project');
+    const getAllGroupsWithProjects = await models.group
+        .query()
+        .withGraphJoined('project');
     const allRequests = await models.request.query();
     const allGroups = await models.group.query();
     const allProjects = await models.project.query();
@@ -28,35 +30,39 @@ exports.list = async (request, response) => {
         groupsWithProjects: getAllGroupsWithProjects,
         groups: allGroups,
         projects: allProjects,
-        requests: allRequests
+        requests: allRequests,
     });
-}
+};
 
 exports.add = async (request, response) => {
-    const getAllGroupsWithProjects = await models.group.query().withGraphJoined('project');
+    const getAllGroupsWithProjects = await models.group
+        .query()
+        .withGraphJoined('project');
     const allGroups = await models.group.query();
     const allProjects = await models.project.query();
-    const allPriorities = await  models.priority.query();
-    const allStatuses = await  models.status.query();
+    const allPriorities = await models.priority.query();
+    const allStatuses = await models.status.query();
 
     response.render('request/add', {
         groupsWithProjects: getAllGroupsWithProjects,
         groups: allGroups,
         projects: allProjects,
         priorities: allPriorities,
-        statuses: allStatuses
+        statuses: allStatuses,
     });
 };
 
 exports.item = async (request, response) => {
     const getId = request.params.id;
-    const getAllGroupsWithProjects = await models.group.query().withGraphJoined('project');
+    const getAllGroupsWithProjects = await models.group
+        .query()
+        .withGraphJoined('project');
     const requestId = await models.request.query().findById(getId);
     const getRepliesById = await models.reply.getById(getId);
 
     response.render('request/item', {
         groupsWithProjects: getAllGroupsWithProjects,
         requestId: requestId,
-        replies: getRepliesById
+        replies: getRepliesById,
     });
-}
+};

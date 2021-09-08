@@ -19,12 +19,12 @@
 const path = require('path');
 const express = require('express');
 const router = require('./routers');
-const {initDb} = require('./models/db.js');
+const { initDb } = require('./models/db.js');
 
 const app = express();
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.set('view engine', 'pug');
@@ -37,4 +37,4 @@ initDb();
 app.listen(3000, () => {
     console.log('OctoOctoRequest successfully starts!');
     console.log('Visit http://localhost:3000/');
-})
+});
