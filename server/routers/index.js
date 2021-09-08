@@ -22,7 +22,7 @@ const requestController = require('./requests.js');
 const groupController = require('./groups.js');
 const projectController = require('./projects.js');
 const tagsController = require('./tags.js');
-const mainController = require("../controllers/main.js");
+const mainController = require('../controllers/main.js');
 
 router.use('/requests', requestController);
 router.use('/groups', groupController);

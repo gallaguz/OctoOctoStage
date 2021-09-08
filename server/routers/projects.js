@@ -23,6 +23,6 @@ const projectController = require('../controllers/project.js');
 router.get('/add', projectController.add);
 router.post('/add', projectController.save);
 router.get('/', projectController.list);
-router.get('/:id', projectController.item)
+router.get('/:id', projectController.item);
 
 module.exports = router;

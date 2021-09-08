@@ -29,8 +29,8 @@ module.exports = class Status extends Model {
             required: ['id', 'name'],
             properties: {
                 id: { type: 'integer' },
-                name: { type: 'string' }
-            }
-        }
+                name: { type: 'string' },
+            },
+        };
     }
-}
+};

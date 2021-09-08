@@ -29,8 +29,8 @@ module.exports = class Priority extends Model {
             required: ['id', 'name'],
             properties: {
                 id: { type: 'integer' },
-                name: { type: 'string' }
-            }
-        }
+                name: { type: 'string' },
+            },
+        };
     }
-}
+};

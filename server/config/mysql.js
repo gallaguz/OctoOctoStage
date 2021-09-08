@@ -25,8 +25,8 @@ if (fs.existsSync(configPath)) {
     const doc = yaml.load(fs.readFileSync(configPath, 'utf8'));
     config = {
         client: 'mysql2',
-        connection: {...doc.dbParams}
-    }
+        connection: {...doc.dbParams},
+    };
 } else {
     config = {
         client: 'mysql2',
@@ -34,9 +34,9 @@ if (fs.existsSync(configPath)) {
             host: process.env.OCTO_DB_HOST,
             user: process.env.OCTO_DB_USER,
             password: process.env.OCTO_DB_PASSWORD,
-            database: process.env.OCTO_DB_NAME
-        }
-    }
+            database: process.env.OCTO_DB_NAME,
+        };
+    };
 }
 
 module.exports = config

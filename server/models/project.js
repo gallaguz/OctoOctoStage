@@ -31,9 +31,9 @@ module.exports = class Project extends Model {
             properties: {
                 id: { type: 'integer' },
                 name: { type: 'string' },
-                groupId: { type: 'integer' }
-            }
-        }
+                groupId: { type: 'integer' },
+            },
+        };
     }
 
     static get relationMappings() {
@@ -44,8 +44,8 @@ module.exports = class Project extends Model {
                 join: {
                     from: 'projects.group_id',
                     to: 'groups.id',
-                }
-            }
-        }
+                },
+            },
+        };
     }
-}
+};

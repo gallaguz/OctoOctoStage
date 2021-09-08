@@ -18,8 +18,8 @@
 
 const config = require('../config/mysql.js');
 const Knex = require('knex')(config);
-const {Model} = require('objection');
+const { Model } = require('objection');
 
 exports.initDb = () => {
     Model.knex(Knex);
-}
+};
