@@ -18,6 +18,8 @@
 
 const path = require('path');
 const express = require('express');
+const serverParams = require('./config/server');
+
 const router = require('./routers');
 const { initDb } = require('./models/db.js');
 
@@ -34,7 +36,7 @@ app.use(router);
 
 initDb();
 
-app.listen(3000, () => {
+app.listen(serverParams.PORT, () => {
     console.log('OctoOctoRequest successfully starts!');
-    console.log('Visit http://localhost:3000/');
+    console.log(`Visit http://localhost:${serverParams.PORT}/`);
 });
