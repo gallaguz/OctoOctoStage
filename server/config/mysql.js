@@ -17,7 +17,7 @@
 'use strict';
 
 const yaml = require('js-yaml');
-const fs   = require('fs');
+const fs = require('fs');
 const configPath = './config.yml';
 let config;
 
@@ -25,7 +25,7 @@ if (fs.existsSync(configPath)) {
     const doc = yaml.load(fs.readFileSync(configPath, 'utf8'));
     config = {
         client: 'mysql2',
-        connection: {...doc.dbParams},
+        connection: { ...doc.dbParams },
     };
 } else {
     config = {
@@ -35,8 +35,8 @@ if (fs.existsSync(configPath)) {
             user: process.env.OCTO_DB_USER,
             password: process.env.OCTO_DB_PASSWORD,
             database: process.env.OCTO_DB_NAME,
-        };
+        },
     };
 }
 
-module.exports = config
+module.exports = config;
