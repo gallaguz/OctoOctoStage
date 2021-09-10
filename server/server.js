@@ -18,12 +18,21 @@
 
 const path = require('path');
 const express = require('express');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
 const serverParams = require('./config/server');
-
 const router = require('./routers');
 const { initDb } = require('./models/db.js');
 
 const app = express();
+app.use(cookieParser());
+const allowList = [serverParams.VUE_CLIENT_URL];
+app.use(
+    cors({
+        credentials: true,
+        origin: allowList,
+    })
+);
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
