@@ -22,18 +22,18 @@ exports.up = function (knex) {
             table.string('email').notNullable();
             table.string('password');
             table.boolean('enabled').defaultTo(true);
-            table.timestamps();
+            table.timestamps(true, true);
         })
         .createTable('groups', function (table) {
             table.bigIncrements('id').primary();
             table.string('name');
-            table.timestamps();
+            table.timestamps(true, true);
         })
         .createTable('projects', function (table) {
             table.bigIncrements('id').primary();
             table.string('name');
             table.bigInteger('group_id').unsigned();
-            table.timestamps();
+            table.timestamps(true, true);
         })
         .createTable('requests', function (table) {
             table.bigIncrements('id').primary();
@@ -44,14 +44,14 @@ exports.up = function (knex) {
             table.bigInteger('group_id').unsigned();
             table.bigInteger('priority_id').unsigned().nullable();
             table.bigInteger('status_id').unsigned().nullable();
-            table.timestamps();
+            table.timestamps(true, true);
         })
         .createTable('replies', function (table) {
             table.bigIncrements('id').primary();
             table.text('content');
             table.bigInteger('request_id').unsigned();
             table.bigInteger('user_id').unsigned();
-            table.timestamps();
+            table.timestamps(true, true);
         })
         .createTable('priorities', function (table) {
             table.bigIncrements('id').primary();
@@ -64,6 +64,7 @@ exports.up = function (knex) {
         .createTable('tags', function (table) {
             table.bigIncrements('id').primary();
             table.string('name');
+            table.timestamps(true, true);
         })
         .alterTable('replies', function (table) {
             table.foreign('user_id').references('id').inTable('users');
