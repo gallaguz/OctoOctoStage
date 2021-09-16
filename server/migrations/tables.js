@@ -24,6 +24,12 @@ exports.up = function (knex) {
             table.boolean('enabled').defaultTo(true);
             table.timestamps(true, true);
         })
+        .createTable('tokens', function (table) {
+            table.bigIncrements('id').primary();
+            table.bigInteger('user_id').unsigned();
+            table.string('refreshToken');
+            table.timestamps(true, true);
+        })
         .createTable('groups', function (table) {
             table.bigIncrements('id').primary();
             table.string('name');
