@@ -27,7 +27,7 @@ const errorMiddleware = require('./middlewares/error-middleware');
 
 const app = express();
 app.use(cookieParser());
-const allowList = [serverParams.VUE_CLIENT_URL];
+const allowList = [serverParams.CLIENT_URL];
 app.use(
     cors({
         credentials: true,
