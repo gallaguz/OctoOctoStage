@@ -16,20 +16,22 @@
 
 'use strict';
 
-const express = require('express');
-const router = express.Router();
-const requestController = require('./requests.js');
-const groupController = require('./groups.js');
-const projectController = require('./projects.js');
-const tagsController = require('./tags.js');
-const mainController = require('../controllers/main.js');
+const router = require('express').Router();
 
-router.use('/requests', requestController);
-router.use('/groups', groupController);
-router.use('/projects', projectController);
-router.use('/tags', tagsController);
-router.get('/login', mainController.loginPage);
-router.get('/register', mainController.registerPage);
-router.get('/', mainController.index);
+const requestsRouter = require('./requests.js');
+const groupsRouter = require('./groups.js');
+const projectsRouter = require('./projects.js');
+const tagsRouter = require('./tags.js');
+const mainRouter = require('./main.js');
+
+const apiRouter = require('./api');
+
+router.use('/requests', requestsRouter);
+router.use('/groups', groupsRouter);
+router.use('/projects', projectsRouter);
+router.use('/tags', tagsRouter);
+router.use('/', mainRouter);
+
+router.use('/api/v1/', apiRouter);
 
 module.exports = router;
