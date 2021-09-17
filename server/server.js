@@ -23,6 +23,7 @@ const cookieParser = require('cookie-parser');
 const serverParams = require('./config/server');
 const router = require('./routers');
 const { initDb } = require('./models/db.js');
+const errorMiddleware = require('./middlewares/error-middleware');
 
 const app = express();
 app.use(cookieParser());
@@ -42,6 +43,7 @@ app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
 app.use(router);
+app.use(errorMiddleware);
 
 initDb();
 
