@@ -16,24 +16,21 @@
 
 'use strict';
 
-const group = require('./group.js');
-const project = require('./project.js');
-const user = require('./user.js');
-const request = require('./request.js');
-const reply = require('./reply.js');
-const priority = require('./priority.js');
-const status = require('./status.js');
-const tag = require('./tag.js');
-const token = require('./token.js');
+const { Model } = require('objection');
 
-module.exports = {
-    group,
-    project,
-    request,
-    user,
-    reply,
-    priority,
-    status,
-    tag,
-    token,
+module.exports = class Token extends Model {
+    static get tableName() {
+        return 'tokens';
+    }
+
+    static get jsonSchema() {
+        return {
+            type: 'object',
+            required: ['user_id', 'refreshToken'],
+            properties: {
+                user_id: { type: 'integer' },
+                refreshToken: { type: 'string' },
+            },
+        };
+    }
 };
